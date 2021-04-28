@@ -1,14 +1,24 @@
 import * as math from "mathjs";
 
-export const getPoints = (): Points => {
+const getRawPoints = () => {
   const input = document.getElementById("points") as HTMLTextAreaElement;
-  const pts = input.value
+  return input.value
+    .trim()
     .split("\n")
-    .map((p) => p.split(" ").map(parseFloat))
-    .map((pa) => ({ x: pa[0], y: pa[1] }));
-
-  return pts;
+    .map((p) => p.trim().split(" ").map(Number));
 };
+
+const rawToPoint = (pa: number[]): Points[0] => ({ x: pa[0], y: pa[1] });
+
+export const getPoints = (): Points =>
+  getRawPoints()
+    .filter((pa) => pa.length === 2 && !pa.some(isNaN))
+    .map(rawToPoint);
+
+export const interpolatePoints = (): Points =>
+  getRawPoints()
+    .filter((p) => !isNaN(p[0]) && isNaN(p[1]))
+    .map(rawToPoint);
 
 export const arrayRange = (n: number, to = 0) =>
   Array(n)
