@@ -1,0 +1,59 @@
+textarea {
+  font-size: 20px;
+  resize: none;
+  width: 98%;
+  height: 90%;
+}
+
+body {
+  margin: 0;
+  padding: 8px;
+  height: 98vh;
+  width: 98vw;
+  display: grid;
+  grid-template-columns: 200px auto;
+  grid-template-rows: min-content 2fr auto 1fr;
+  gap: 0px 10px;
+  grid-template-areas:
+    "title title"
+    "input plot"
+    "controls plot"
+    "formula formula";
+}
+.title {
+  grid-area: title;
+}
+.plot {
+  grid-area: plot;
+}
+.plot canvas {
+  height: 100% !important;
+  width: 100% !important;
+}
+.input {
+  grid-area: input;
+}
+.formula {
+  grid-area: formula;
+}
+.controls {
+  grid-area: controls;
+  display: grid;
+  gap: 5px 5px;
+}
+
+.supsub {
+  display: inline-block;
+}
+
+.supsub sup,
+.supsub sub {
+  position: relative;
+  display: block;
+  font-size: 0.6em;
+  line-height: 1.2;
+}
+
+.supsub sub {
+  top: 0.5em;
+}
