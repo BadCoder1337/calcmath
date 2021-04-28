@@ -6,12 +6,9 @@ import * as math from "mathjs";
 import { simpson } from "./src/integral";
 import { formula } from "./src/utils/formula";
 
-window.math = math;
-window.simpson = simpson;
-window.formula = formula;
-
-document.querySelector(".controls").addEventListener("click", (event) => {
-  const { target } = event;
+const controls = document.querySelector(".controls") as HTMLDivElement;
+controls.addEventListener("click", (event) => {
+  const target = event.target as HTMLInputElement;
 
   console.log(target);
 
@@ -33,12 +30,11 @@ document.querySelector(".controls").addEventListener("click", (event) => {
   }
 });
 
-const textarea = document.getElementById("points");
-textarea.addEventListener("drop", (e) => {
-  e.preventDefault();
-  console.log("drop", e);
+const textarea = document.getElementById("points") as HTMLTextAreaElement;
+textarea.addEventListener("drop", async (ev) => {
+  ev.preventDefault();
+
+  const file = ev.dataTransfer.files[0];
+  textarea.value = await file.text();
 });
-textarea.addEventListener("dragover", (e) => {
-  e.preventDefault();
-  console.log("dragover", e);
-});
+textarea.addEventListener("dragover", (e) => e.preventDefault());
