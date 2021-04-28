@@ -34,11 +34,11 @@ document.querySelector(".controls").addEventListener("click", (event) => {
 });
 
 const textarea = document.getElementById("points");
-textarea.addEventListener("drag", (e) => {
+textarea.addEventListener("drop", (e) => {
   e.preventDefault();
-  console.log(e);
+  console.log("drop", e);
 });
 textarea.addEventListener("dragover", (e) => {
   e.preventDefault();
-  console.log(e);
+  console.log("dragover", e);
 });
