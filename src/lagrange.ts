@@ -1,9 +1,16 @@
-import { getPoints, Points, evenCeil, solveLinearSystem } from "./utils/index";
-import { chart } from "./utils/chart";
 import * as math from "mathjs";
-import { simpson } from "./integral";
+import {
+  getPoints,
+  Points,
+  evenCeil,
+  solveLinearSystem,
+  roundToFixed,
+  getRawPoints,
+  arrayRange
+} from "./utils";
+import { chart } from "./utils/chart";
 import { formula } from "./utils/formula";
-import { arrayRange } from "./utils";
+import { simpson } from "./integral";
 
 export function calc(pts: Points) {
   const indices = arrayRange(pts.length);
@@ -32,4 +39,10 @@ export function main() {
     chart.range,
     simpson(fn, chart.range, evenCeil(pts.length))
   );
+
+  const textarea = document.getElementById("points") as HTMLTextAreaElement;
+  textarea.value = getRawPoints()
+    .map((p) => (isNaN(p[1]) ? [p[0], roundToFixed(fn(p[0]))] : p))
+    .map((p) => p.join(" "))
+    .join("\n");
 }

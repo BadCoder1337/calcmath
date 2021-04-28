@@ -1,4 +1,4 @@
-const roundToFixed = (x: number) => Number(x.toFixed(2));
+import { roundToFixed } from ".";
 
 export const getK = (k) => {
   const sign = k >= 0 ? "+" : "-";
@@ -36,7 +36,7 @@ class FormulaOutput {
     if (this.set.has(label)) return;
     this.set.add(label);
 
-    K = K.reverse();
+    K = K.slice().reverse(); // don't mutate original array
     const p = document.createElement("p");
     // p.innerHTML = `\\(${label} F(x)=${} \\)`;
     const result = K.map((v, i) => getPart(v, K.length - i - 1)).join(" ");

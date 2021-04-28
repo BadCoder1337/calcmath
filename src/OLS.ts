@@ -1,14 +1,14 @@
+import * as math from "mathjs";
 import {
   getPoints,
   Points,
   arrayRangeDesc,
   evenCeil,
   solveLinearSystem
-} from "./utils/index";
+} from "./utils";
 import { chart } from "./utils/chart";
-import * as math from "mathjs";
-import { simpson } from "./integral";
 import { formula } from "./utils/formula";
+import { simpson } from "./integral";
 
 /**
  * Система-2

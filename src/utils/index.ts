@@ -1,6 +1,6 @@
 import * as math from "mathjs";
 
-const getRawPoints = () => {
+export const getRawPoints = () => {
   const input = document.getElementById("points") as HTMLTextAreaElement;
   return input.value
     .trim()
@@ -29,6 +29,7 @@ export const arrayRangeDesc = (n: number, to = 0) =>
   arrayRange(n, to).reverse();
 
 export const evenCeil = (x: number) => x + (x % 2);
+export const roundToFixed = (x: number) => Number(x.toFixed(2));
 
 /**
  * Матричный метод решения СЛАУ

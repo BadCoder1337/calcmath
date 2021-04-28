@@ -1,5 +1,5 @@
-import { Fn, arrayRange } from "./utils";
 import * as math from "mathjs";
+import { Fn, arrayRange } from "./utils";
 
 export const simpson = (fn: Fn, [a, b]: [number, number], parts: number) => {
   if (parts % 2 !== 0)

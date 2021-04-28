@@ -29,10 +29,35 @@ controls.addEventListener("click", (event) => {
 });
 
 const textarea = document.getElementById("points") as HTMLTextAreaElement;
+
 textarea.addEventListener("drop", async (ev) => {
   ev.preventDefault();
 
   const file = ev.dataTransfer.files[0];
   textarea.value = await file.text();
 });
-textarea.addEventListener("dragover", (e) => e.preventDefault());
+
+textarea.addEventListener("dragover", (ev) => ev.preventDefault());
+
+textarea.addEventListener("click", (ev) => {
+  if (ev.ctrlKey) {
+    const blob = new Blob(
+      [
+        textarea.value
+          .trim()
+          .split("\n")
+          .map((s) => s.trim())
+          .join("\n")
+      ],
+      {
+        type: "text/plain"
+      }
+    );
+
+    const a = document.createElement("a");
+    a.download = "result.txt";
+    a.href = URL.createObjectURL(blob);
+    a.dataset.downloadurl = ["text/plain", a.download, a.href].join(":");
+    a.click();
+  }
+});
